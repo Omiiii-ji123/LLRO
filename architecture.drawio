@@ -1,0 +1,115 @@
+<mxfile host="65bd71144e">
+    <diagram id="U9xs6QIK0QM5kO3R1TKr" name="Page-1">
+        <mxGraphModel dx="640" dy="474" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Legacy Logistics Route Optimization Engine — Full System Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="20" width="900" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="React Frontend — Port 3000" style="swimlane;fontStyle=1;fontSize=13;fillColor=#0f2744;strokeColor=#2563eb;fontColor=#93c5fd;startSize=35;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="80" width="360" height="580" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="App.jsx&#xa;────────────────&#xa;• Root component&#xa;• Sets up React Router&#xa;• Defines 3 routes&#xa;• Renders Navbar + pages" style="rounded=1;fillColor=#0a1f3d;strokeColor=#2563eb;fontColor=#bfdbfe;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="10">
+                    <mxGeometry x="20" y="50" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Navbar.jsx&#xa;────────────────&#xa;• Sticky top navigation&#xa;• NavLink with active state&#xa;• Links: Optimizer / Benchmark / About" style="rounded=1;fillColor=#0a1f3d;strokeColor=#2563eb;fontColor=#bfdbfe;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="10">
+                    <mxGeometry x="20" y="145" width="320" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="RouteOptimizer.jsx&#xa;────────────────&#xa;• Dynamic location input form&#xa;• City name → auto lat/lon lookup&#xa;• Calls POST /api/routes/optimize-route&#xa;• Displays ordered route + stats" style="rounded=1;fillColor=#0a1f3d;strokeColor=#2563eb;fontColor=#bfdbfe;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="10">
+                    <mxGeometry x="20" y="235" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="BenchmarkChart.jsx&#xa;────────────────&#xa;• Runs scalability benchmark&#xa;• Calls GET /api/benchmark/scalability&#xa;• Recharts bar chart (time + distance)&#xa;• Toggle between time/distance views&#xa;• Detailed results table" style="rounded=1;fillColor=#0a1f3d;strokeColor=#2563eb;fontColor=#bfdbfe;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="10">
+                    <mxGeometry x="20" y="340" width="320" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="About.jsx&#xa;────────────────&#xa;• Project description&#xa;• Legacy vs Modern comparison&#xa;• Benchmark results table&#xa;• Tech stack + algorithm explanation" style="rounded=1;fillColor=#0a1f3d;strokeColor=#2563eb;fontColor=#bfdbfe;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="10">
+                    <mxGeometry x="20" y="450" width="320" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="api.js (Service Layer)&#xa;────────────────&#xa;• axios instance → baseURL :8081&#xa;• optimizeRoute(locations)&#xa;• runScalabilityBenchmark()&#xa;• runSingleBenchmark(count)&#xa;• healthCheck()" style="rounded=1;fillColor=#0a1f3d;strokeColor=#60a5fa;fontColor=#bfdbfe;align=left;spacingLeft=10;fontSize=11;strokeWidth=2;" vertex="1" parent="10">
+                    <mxGeometry x="20" y="550" width="320" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Spring Boot Backend — Port 8081" style="swimlane;fontStyle=1;fontSize=13;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;startSize=35;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="80" width="400" height="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Controller Layer" style="swimlane;fontStyle=1;fontSize=11;fillColor=#14291a;strokeColor=#22c55e;fontColor=#86efac;startSize=28;" vertex="1" parent="20">
+                    <mxGeometry x="20" y="50" width="360" height="185" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="RouteController.java&#xa;────────────────&#xa;• @RestController&#xa;• POST /api/routes/optimize-route&#xa;  → @Valid input validation&#xa;  → calls RouteOptimizationService&#xa;• GET /api/routes/health" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="21">
+                    <mxGeometry x="15" y="35" width="155" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="BenchmarkController.java&#xa;────────────────&#xa;• @RestController&#xa;• GET /api/benchmark/run/{n}&#xa;  → validates 2 ≤ n ≤ 500&#xa;  → calls BenchmarkRunner&#xa;• GET /api/benchmark/scalability&#xa;  → sizes: 5,10,25,50,100,200" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="21">
+                    <mxGeometry x="190" y="35" width="155" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Service Layer" style="swimlane;fontStyle=1;fontSize=11;fillColor=#14291a;strokeColor=#22c55e;fontColor=#86efac;startSize=28;" vertex="1" parent="20">
+                    <mxGeometry x="20" y="255" width="360" height="185" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="RouteOptimizationService.java&#xa;────────────────&#xa;• @Service (Spring Bean)&#xa;• Nearest Neighbor Greedy&#xa;  → O(n²) algorithm&#xa;• Haversine distance formula&#xa;  → accurate spherical distance&#xa;• Returns RouteResponse DTO" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="24">
+                    <mxGeometry x="15" y="35" width="155" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="BenchmarkRunner.java&#xa;────────────────&#xa;• @Component (Spring Bean)&#xa;• Generates identical inputs&#xa;  → fixed seed=42 (deterministic)&#xa;• Runs legacy + modern&#xa;• Measures nanoTime() for both&#xa;• Returns BenchmarkResult" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="24">
+                    <mxGeometry x="190" y="35" width="155" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Repository Layer" style="swimlane;fontStyle=1;fontSize=11;fillColor=#14291a;strokeColor=#22c55e;fontColor=#86efac;startSize=28;" vertex="1" parent="20">
+                    <mxGeometry x="20" y="460" width="360" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="LocationRepository.java&#xa;────────────────&#xa;• extends JpaRepository&lt;Location, Long&gt;&#xa;• Auto-generated: save, findAll,&#xa;  findById, delete, count&#xa;• Custom: findByName, existsByName" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="27">
+                    <mxGeometry x="80" y="30" width="200" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Model + DTO Layer" style="swimlane;fontStyle=1;fontSize=11;fillColor=#14291a;strokeColor=#22c55e;fontColor=#86efac;startSize=28;" vertex="1" parent="20">
+                    <mxGeometry x="20" y="590" width="360" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Location.java&#xa;────────────&#xa;• @Entity → MySQL table&#xa;• id, name, lat, lon" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="29">
+                    <mxGeometry x="15" y="30" width="100" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="RouteRequest.java&#xa;────────────────&#xa;• @NotEmpty validation&#xa;• List&lt;LocationDTO&gt;&#xa;• name, latitude, longitude" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="29">
+                    <mxGeometry x="130" y="30" width="100" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="RouteResponse.java&#xa;────────────────&#xa;• optimizedRoute list&#xa;• totalDistanceKm&#xa;• executionTimeMs&#xa;• algorithmUsed" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="29">
+                    <mxGeometry x="245" y="30" width="100" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="Config + Exception Layer" style="swimlane;fontStyle=1;fontSize=11;fillColor=#14291a;strokeColor=#22c55e;fontColor=#86efac;startSize=28;" vertex="1" parent="20">
+                    <mxGeometry x="20" y="720" width="360" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="GlobalExceptionHandler" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;fontSize=11;" vertex="1" parent="33">
+                    <mxGeometry x="15" y="25" width="100" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="SwaggerConfig" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;fontSize=11;" vertex="1" parent="33">
+                    <mxGeometry x="130" y="25" width="100" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="WebConfig (CORS)" style="rounded=1;fillColor=#0a1f0e;strokeColor=#22c55e;fontColor=#86efac;fontSize=11;" vertex="1" parent="33">
+                    <mxGeometry x="245" y="25" width="100" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#22c55e;strokeWidth=2;" edge="1" parent="20" source="21" target="24">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#22c55e;strokeWidth=2;" edge="1" parent="20" source="24" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="Legacy Module" style="swimlane;fontStyle=1;fontSize=13;fillColor=#2a0a0a;strokeColor=#ef4444;fontColor=#fca5a5;startSize=35;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="910" width="400" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="LegacyRouteEngine.java&#xa;────────────────────────────────────&#xa;• No Spring annotations — plain Java class&#xa;• Naive algorithm: visits locations in input order&#xa;• Euclidean distance (flat earth — inaccurate)&#xa;• 1,000 iteration waste loop per location pair&#xa;• Effectively O(1000n) time complexity&#xa;• Public fields — no encapsulation&#xa;• Inner classes: Location, RouteResult" style="rounded=1;fillColor=#1a0505;strokeColor=#ef4444;fontColor=#fca5a5;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="40">
+                    <mxGeometry x="20" y="45" width="360" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="MySQL Database&#xa;logistics_db&#xa;────────────&#xa;table: locations&#xa;id, name, lat, lon" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#1a1a3a;strokeColor=#818cf8;fontColor=#c7d2fe;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="960" y="400" width="160" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="OpenStreetMap&#xa;Nominatim API&#xa;────────────&#xa;City name → lat/lon&#xa;Free, no key needed" style="rounded=1;fillColor=#1a1a1a;strokeColor=#f59e0b;fontColor=#fcd34d;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="720" width="180" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="HTTP POST/GET&#xa;CORS enabled" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2563eb;fontColor=#93c5fd;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="16" target="21">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="Spring Data JPA&#xa;Auto SQL" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#818cf8;fontColor=#818cf8;fontSize=10;strokeWidth=2;" edge="1" parent="1" source="28" target="50">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="calls directly&#xa;(no Spring)" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#ef4444;fontColor=#fca5a5;fontSize=10;dashed=1;strokeWidth=2;" edge="1" parent="1" source="26" target="41">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="fetch() city lookup&#xa;onBlur event" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#f59e0b;fontColor=#fcd34d;fontSize=10;dashed=1;" edge="1" parent="1" source="13" target="60">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
